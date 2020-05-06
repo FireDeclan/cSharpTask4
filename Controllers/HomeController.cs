@@ -29,13 +29,17 @@ namespace cSharpTask4.Controllers
         public IActionResult Index(string firstValue, string secondValue)
         {
             double[] cleanValue = checkValue(firstValue, secondValue);
-            if (cleanValue[0]==-1 && cleanValue[1]==-1)
+            if (cleanValue[0]==-1)
             {
-                ViewBag.gbeFun = "Invalid input\nPlease check your input";
+                ViewBag.feedback = "Oops alphabet detected\nPlease check your input";
+            }
+            else if (cleanValue[0]==-2)
+            {
+                ViewBag.feedback = "Oops, you entered a negative number";
             }
             else
             {
-                ViewBag.gbeFun = sqRoot(cleanValue[0],cleanValue[1]);
+                ViewBag.feedback = sqRoot(cleanValue[0],cleanValue[1]);
             }
             return View();
         }
@@ -52,11 +56,18 @@ namespace cSharpTask4.Controllers
             double checkTwo = 0;
             double[] checkedValues = new double[2];
             
-            if(!(double.TryParse(valueOne, out checkOne)) || !(double.TryParse(valueTwo, out checkTwo)) || checkOne<0||checkTwo<0)
+            if(!(double.TryParse(valueOne, out checkOne)) || !(double.TryParse(valueTwo, out checkTwo)))
             {
                 checkedValues[0] = -1;
                 checkedValues[1] = -1;
                 return checkedValues;
+            }
+            else if (checkOne<0||checkTwo<0)
+            {
+                checkedValues[0] = -2;
+                checkedValues[1] = -2;
+                return checkedValues;
+
             }
             else{
                 checkedValues[0] = checkOne;
