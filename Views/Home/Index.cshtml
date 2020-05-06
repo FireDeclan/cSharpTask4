@@ -2,7 +2,32 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="genWrapper">
+    <div class="cntWrapper">
+        <div class="cardwrapper">
+            <div class="flash">
+                <h3>Instruction</h3>
+                <p>Type two non-negative numbers to compare their square roots</p>
+            </div>
+            <div class="flash1">
+                <p class="mobile">Enter two numbers to compare square roots</p>
+                <form action="" method="post">
+    
+                    <input type="text" name="firstValue" id="" class="formstyle">
+                    <p>VS</p>
+                    <input type="text" name="secondValue" id="" class="formstyle">
+                    <button type="submit" class="formstyle">Compare</button>
+                </form>
+            </div>
+            <div class="flash">
+                <h3>Result</h3>
+                <p>@ViewBag.gbeFun</p>
+            </div>
+        </div>
+        <div class="mobile">
+            <div class="flashmobile">
+                <p>@ViewBag.gbeFun</p>
+            </div>
+        </div>
+    </div>
 </div>

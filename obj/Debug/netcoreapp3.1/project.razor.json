@@ -20536,11 +20536,6 @@
       "FileKind": "mvc"
     },
     {
-      "FilePath": "c:\\Work\\StartNG\\C#\\CSharpTask4\\cSharpTask4\\Views\\Home\\Privacy.cshtml",
-      "TargetPath": "Views\\Home\\Privacy.cshtml",
-      "FileKind": "mvc"
-    },
-    {
       "FilePath": "c:\\Work\\StartNG\\C#\\CSharpTask4\\cSharpTask4\\Views\\_ViewStart.cshtml",
       "TargetPath": "Views\\_ViewStart.cshtml",
       "FileKind": "mvc"

@@ -18,13 +18,25 @@ namespace cSharpTask4.Controllers
             _logger = logger;
         }
 
+        [HttpGet]
         public IActionResult Index()
         {
             return View();
         }
-
-        public IActionResult Privacy()
+        
+        
+        [HttpPost]
+        public IActionResult Index(string firstValue, string secondValue)
         {
+            double[] cleanValue = checkValue(firstValue, secondValue);
+            if (cleanValue[0]==-1 && cleanValue[1]==-1)
+            {
+                ViewBag.gbeFun = "Invalid input\nPlease check your input";
+            }
+            else
+            {
+                ViewBag.gbeFun = sqRoot(cleanValue[0],cleanValue[1]);
+            }
             return View();
         }
 
@@ -33,5 +45,46 @@ namespace cSharpTask4.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        public static double[] checkValue(string valueOne, string valueTwo)
+        {
+            double checkOne = 0;
+            double checkTwo = 0;
+            double[] checkedValues = new double[2];
+            
+            if(!(double.TryParse(valueOne, out checkOne)) || !(double.TryParse(valueTwo, out checkTwo)) || checkOne<0||checkTwo<0)
+            {
+                checkedValues[0] = -1;
+                checkedValues[1] = -1;
+                return checkedValues;
+            }
+            else{
+                checkedValues[0] = checkOne;
+                checkedValues[1] = checkTwo;
+                return checkedValues;
+            }
+        }
+
+        public static string sqRoot(double firstValue, double secondValue)
+        {
+            float firstRoot = (float)Math.Sqrt(firstValue);
+            float secondRoot = (float)Math.Sqrt(secondValue); 
+            string responseOne = "The number "+firstValue+" with square root "+firstRoot+" has a higher square root than the number "+secondValue+" with square root "+secondRoot+".";
+            string responseTwo = "The number "+secondValue+" with square root "+secondRoot+" has a higher square root than the number "+firstValue+" with square root "+firstRoot+".";
+            string responseThree = "The numbers have the same squre roots. Enter different numbers. ";
+            if (firstRoot > secondRoot)
+            {
+                return responseOne;
+            }
+            else if (firstRoot == secondRoot)
+            {
+                return responseThree;
+            }
+            else {
+            return responseTwo;
+            }
+        }
     }
+
+    
 }
